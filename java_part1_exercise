@@ -1,0 +1,93 @@
+1.  How java follows "Write Once And Run Anywhere" concept?
+Ans.    Java compiler java files to bytecode which is platform independent and jvm is able to run it on any machile which have jre
+
+
+2. Do java support pass by value and pass by reference?
+Ans.  Java is pass by value.  
+
+3.  Write a program to add 3 to the ASCII value of the character 'd' and print the equivalent character.
+Ans.  public class PrintChar{
+
+	public static void main(String args[]){
+		
+		char c='d'+(char)3;
+		System.out.println(c);
+	}
+}
+
+4.What is the size in bits for a 'byte' data type.
+Ans.   8 bit
+
+5. Which of the following lines will compile without warning or error?
+   char d="d";     //error passing string to char type
+   float f=3.1415;  // error by default it 3.1415 is double
+   int i=34;        // no error
+   byte b=257;      // error overflow it can store value upto 127
+   boolean isPresent=true; //no error
+   
+6. Which of the following expressions will evaluate to 7?
+   2 + 4 * 3- 7            ------->   7     true
+   (2 + 4) * (3 - 7)       ------->  -24    false
+   2 + (4 * 3) - 7         ------->   7     true 
+  ((2 + 4) * 3) - 7)       ------->   11    false
+  
+7. Which of the following statement will compile?
+     int i = 5;   int j = 10; 
+	i.   while(i < j) {}    //compile
+	ii.  while(i) {}        // not compile i is of type int it require boolean type
+	iii. while(i = 5) {}    // not compile
+	iv.  while((i = 12)!=5) {} // compile 
+	
+8. What is the result of the following operation?
+   System.out.println(4 % 3);      
+Ans    1 
+
+9. Which of the following if statements will compile without errors?
+    int i = 3;         int j = 3;        int k = 3; 
+    i.	   if(i > j) {}  	    //compile
+    ii.    if(i > j > k) {}        //not compile
+    iii.   if(i > j && i > k) {}   //compile
+    iv.    if(i > j && > k) {}     //not compile  
+    
+10. What will be printed out when the following code is executed?
+	switch (5) {  
+		case 0: 
+       		System.out.println("zero"); 
+       		break; 
+    		case 1: 
+       		System.out.println("one"); 
+    		default: 
+       		System.out.println("default"); 
+    		case 2: 
+       		System.out.println("two"); 
+}  
+
+Ans.    defaulttwo  
+
+11. What's the output of the following code?
+public class Main {
+  public static void main(String args[]) {
+    boolean myVal = false;
+    if (myVal = true)
+      for (int i = 0; i < 2; i++)
+        System.out.println(i);
+    else
+      System.out.println("else");
+  }
+}  
+Ans.  01
+
+
+12. What's the output of the following code?
+	public class Main {
+  		public static void main(String[] args) {
+    			int i = 10;
+    			do
+      				while (i < 15)
+        				i = i + 20;
+    			while (i < 2);
+    			System.out.println(i);
+  		}
+}
+Ans. 30
+
