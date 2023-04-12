@@ -1,0 +1,57 @@
+1. Create a directory
+2. Switch to this directory
+3. Create a normal text file
+4. Create a hidden text file
+5. Modify the access of the hidden text file so that it can be edited only by root user.
+6. Move the hidden file to a your desktop.
+7. Create a directory, add 3 files into it and then remove the whole directory.
+8. Create a new user group.
+9. Create a new user and assign a new user home and the previously created usergroup to the user.
+10. Create a symbolic link in a different location for the file created in step 3.
+11. Open google chrome or any other web browser, see its memory usage using top command and end the process using the ps and grep commands.
+12. Use ssh and scp commands to download and modify files on an external machine.
+
+
+Solutions
+1. mkdir newdir
+
+2. cd newdir
+
+3. touch newfile.txt
+
+4. touch .hiddenfile.txt
+
+5   sudo chown root:ashishpatel .hiddenfile
+    sudo chmod 644 .hiddenfile.txt
+    
+6.  mv .hiddenfile.txt ./Desktop/
+
+7. mkdir newdir2
+   cd newdir2
+   	
+   cd ..
+   rm -r newdir2
+   
+8. sudo groupadd friends
+
+9. sudo useradd -g friends -d /home saksham
+
+10. ln -s newfile.txt /home/ashishpatel/Desktop/symboliclink.txt
+
+11. top |grep firefox
+    ps aux|grep
+    killall firefox
+    
+12. edit at external machine
+    ssh vishalprajapati@172.28.1.78
+    vi abc.txt    //insert something and save 
+    
+    downloading file from external device
+    scp vishal@prajapati@172.28.1.78:/home/vishalprajapati/abc.txt /home/ashishpatel/
+    
+
+
+
+
+
+
