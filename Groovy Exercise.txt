@@ -1,0 +1,312 @@
+# Introduction to Groovy - Exercise
+
+ 
+
+
+Question1.  Create a class in Java along with follwing fields.  
+Classname is Person   
+fields are name, age, gender, address 
+Access the fields in all known ways: like through getter, by dot operator
+
+
+Ans  public class Person{
+    public String name;
+    private int age;
+    public String address;
+    private String gender; 
+
+    public Person(String name,int age,String address,String gender){
+        this.name=name;
+        this.age=age;
+        this.address=address;
+        this.gender=gender;
+    } 
+    public int  getAge(){
+        return age;
+    }
+    public String getGender(){
+        return gender;
+    }
+
+}
+ class Main{
+    public static void main(String[] args) {
+        Person person1=new Person("ashish",23,"Male","raisen,mp");
+        System.out.println( person1.name);
+        System.out.println(person1.getAge());
+        System.out.println(person1.getGender());
+        System.out.println(person1.address);
+    }
+ }
+
+ 
+
+
+
+ 
+
+ 
+
+Question2.   Extend the Person class in Groovy.  
+
+ 
+
+Add following fields to it: 
+empld, company, salary
+
+ 
+
+Access the fields in all known ways: like through getter, by dot operator, by @ operator.
+
+ 
+Ans
+class Person {
+    public String name;
+    private int age;
+    public String address;
+    private String gender;
+
+    int salary;
+    public String company;
+    private int empid;
+    Person(int empid ,String company,int salary,String name,int age,String address,String gender){
+        this.name=name;
+        this.age=age;
+        this.address=address;
+        this.gender=gender;
+        this.salary=salary;
+        this.company=company;
+        this.empid=empid;
+    }
+    void setSalary(int salary){
+        this.salary=salary+10000;
+    }
+    int  getSalary(){
+        return salary;
+    }
+    
+    void getEmpid(){     
+    }
+    void setEmpid(int id){}
+
+    public int  getAge(){
+        return age;
+    }
+    public String getGender(){
+        return gender;
+    }
+}
+
+Person emp=new Person(1,"Rxlogix",40000,"ashish",23,"Male","raisen,mp");
+println( emp.empid);
+println(emp.company)
+emp.salary=40000;
+println(emp.salary);
+emp.empid=5;
+println(emp.empid);
+emp.@empid=5;
+println(emp.empid)
+
+ 
+
+Question3.   Print this pattern:
+> *  
+> **  
+> ****  
+> ********  
+
+Ans  
+    int  i=0;
+    4.times{ (2**i).times {print "*" } ;++i}
+
+
+Question4.   GString... override the toString() of the Person class to return something like... "Sachin is a man aged 24 who lives at Delhi. He works for Intelligrape with
+ employee id 12 and draws $$$$$$$ lots of money !!!!."
+
+Ans. 
+class Person {
+    public String name;
+    private int age;
+    public String address;
+    private String gender;
+
+    String salary;
+    public String company;
+    private int empid;
+    Person(int empid ,String company,String salary,String name,int age,String address,String gender){
+        this.name=name;
+        this.age=age;
+        this.address=address;
+        this.gender=gender;
+        this.salary=salary;
+        this.company=company;
+        this.empid=empid;
+    }
+    
+   
+    String toString(){
+        return name +"is a "+gender+" aged "+age+" who lives at "+address+". He works for "+company+" with employee id "+empid+" and draws "+salary+" lots of money !!!";
+    }
+}
+
+Person emp=new Person(12,"intelligrape","\$\$\$\$\$\$\$","sachin",24,"man","Delhi");
+print(emp);
+
+ 
+
+Question5.   Groovy Truth:
+
+
+if('test') { 
+  println "test evaluated to true inside if"
+}
+
+try replacing test with various objects and observe its behaviour.
+
+ 
+
+ a) "Test"          --------->  true
+ b) empty list      ----------> false
+ c) list with all vaues as null   ---------> true
+ d) List list = new ArrayList()  ----------->false
+
+ 
+
+
+Question6.  Write a HourMinute where the class Stores hours and minutes as separate fields. Overload + and - operator operator for this class.
+Ans.
+class HourMinute{
+    int hours;
+    int minutes;
+
+    HourMinute(int hours,int minutes){
+        this.hours=hours;
+        this.minutes=minutes;
+    }
+    def plus(HourMinute obj){
+        int newMinutes=minutes+obj.minutes;
+        int temp=(newMinutes)/60;
+        int newHours=(hours+obj.hours+ temp)%24;
+        newMinutes%=60;
+       
+        return new HourMinute(newHours,newMinutes);
+    }
+
+    def minus(HourMinute obj){
+        int newMinutes;
+        int newHours=0
+        if(obj.minutes>minutes){
+            newHours--;
+            newMinutes=60+minutes-obj.minutes;
+        } 
+        else
+            newMinutes=minutes-obj.minutes;
+            newHours+=(24+hours-obj.hours)%24
+        return new HourMinute(newHours,newMinutes);
+    }
+     
+     String toString(){
+        return hours +" : "+minutes
+     }
+
+}
+HourMinute t1=new HourMinute(10,30);
+HourMinute t2=new HourMinute(5,40);
+println(t1-t2)
+println(t1+t2)
+
+ 
+
+
+
+
+ 
+
+Question7.  Print multiple of 3 upto 10 terms in at least three different ways using groovy special methods.
+Ans 
+  1.  1.step 10, 1, { i-> println(i*3) }
+  2.  int i=1;
+      10.times{ println(3*i);i+=1;}
+  3.  3.upto(30, {i-> if(i%3==0) println(i);})
+
+ 
+
+
+Question8.  Write a closure which checks it a value is contained within a list where the closure accepts two parameters.
+Ans 
+  clo={a , b -> 
+    boolean find=false;
+    for(i in b){
+        if(i==a)
+          return true
+    }
+    return false;
+}
+print(clo(2,[1,2,3,4,5]));
+ 
+
+ 
+
+Question9.  Combine content of all the tiles in a specific directory to another new file.
+Ans.
+   import groovy.io.FileType
+
+def currDir = new File("/home/ashishpatel/Desktop/Test/");
+println currDir
+def files=[]
+String s=""
+currDir.eachFile (FileType.FILES) { file ->
+     new File("${file}").eachLine {line ->
+      s += (line + "\n" )}
+    
+}
+print(s)
+ def newFile=new File("/home/ashishpatel/Desktop/Test/newFile.txt");
+ newFile.createNewFile();
+ newFile.append(s);
+ 
+
+
+
+Question10.  Create a file which contains all the Odd numbered lines of a given file. Each line should be numbered at the beginning of line viz - 1. 3. 5 ....
+Ans. def file=new File("/home/ashishpatel/Desktop/Test/odd.txt");
+    file.createNewFile(); 
+    String s="";
+    int lineCount=1;
+    new File("/home/ashishpatel/Desktop/Test/f.txt").eachLine { line-> 
+    if(lineCount%2==1) 
+        s+=("" + lineCount+"\n"+line)
+   };
+   file.append(s);
+ 
+
+Question11. Write a method which removes all the white spaces in a tile and writes the output to another file. Suppose white space characters are Space, Tab and Enter
+Ans.
+ String s="";
+ def file=new File("/home/ashishpatel/Desktop/Test/f.txt");
+ file.eachLine { line -> 
+    line.each { i -> 
+    if(i !=' ' && i !='\t' && i!= '\n')
+     s+=i}
+ }
+ print(s);
+
+ def newFile= new File("home/ashishpatel/Desktop/Test/newFile.txt");
+ newFile.createNewFile();
+ newFile.append(s);
+
+ 
+
+ 
+
+Question12.  Make copy of an image type file byte by byte.
+Ans. 
+def file=new File("/home/ashishpatel/Downloads/open-eye.png")
+byte[] binaryContent = file.bytes 
+def newFile=new File("/home/ashishpatel/Downloads/copy.png")
+newFile.createNewFile()
+binaryContent.each {i -> 
+  byte [] temp=[i];
+  newFile.append(temp) };    
+
+--
