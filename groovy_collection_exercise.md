@@ -638,3 +638,16 @@ Perform the following operations on the list of employees:  
 >            list.find{map[key]==it}}
 >println findValue(2,"ashish patel is a good")
 >```
+
+**Question25.**  Write a method which retruns the value of passed key from a search string of the form 
+`"http://www.google.com/?name=johny&age=20&hobby=cricket"`
+
+**Answer**
+>```groovy
+>findValue={key,str->
+>            list=str.tokenize('?')
+>            (list[1].tokenize('&').find{ temp=it.tokenize('=')
+>                                        if(temp[0]==key)
+>                                           return temp[1]}.tokenize('='))[1]}
+>println findValue("name","http://www.google.com/?name=johny&age=20&hobby=cricket")
+>```
